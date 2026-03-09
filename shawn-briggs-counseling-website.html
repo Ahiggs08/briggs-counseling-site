@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shawn Briggs, LPC | Licensed Professional Counselor | Meridian, Idaho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --green-deep: #3B4A2F;
+  --green-mid: #4A5D3A;
+  --green-olive: #5C6E4A;
+  --green-muted: #6B7D58;
+  --tan-light: #F5F0E8;
+  --tan: #EDE6D8;
+  --tan-warm: #E3D9C6;
+  --tan-dark: #C9BDA6;
+  --cream: #FAF8F3;
+  --brown-warm: #8B7355;
+  --brown-leather: #A0845C;
+  --text-dark: #2C2C2C;
+  --text-body: #4A4A4A;
+  --text-muted: #6E6E6E;
+  --white: #FFFFFF;
+  --shadow-soft: 0 2px 20px rgba(59, 74, 47, 0.08);
+  --shadow-md: 0 4px 30px rgba(59, 74, 47, 0.12);
+  --shadow-lg: 0 8px 40px rgba(59, 74, 47, 0.15);
+  --radius: 8px;
+  --radius-lg: 16px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-body);
+  background: var(--cream);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--green-deep);
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+/* ─── Utility ───────────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-pad { padding: 100px 0; }
+.section-pad-sm { padding: 72px 0; }
+
+/* ─── Grain Overlay ─────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── Top Bar ───────────────────────────────────── */
+.top-bar {
+  background: var(--green-deep);
+  color: var(--tan-light);
+  font-size: 13px;
+  padding: 8px 0;
+  letter-spacing: 0.3px;
+}
+.top-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.top-bar a {
+  color: var(--tan-warm);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.top-bar a:hover { color: var(--white); }
+.top-bar .badge {
+  background: rgba(255,255,255,0.12);
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ─── Nav ───────────────────────────────────────── */
+.nav {
+  background: var(--cream);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(59, 74, 47, 0.08);
+  transition: box-shadow var(--transition);
+}
+.nav.scrolled { box-shadow: var(--shadow-soft); }
+.nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  position: relative;
+}
+.nav-brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.nav-brand .name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--green-deep);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+.nav-brand .title {
+  font-size: 12px;
+  color: var(--green-muted);
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-body);
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--green-deep); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--green-mid);
+  transition: width var(--transition);
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--green-deep);
+  color: var(--white) !important;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+  transition: all var(--transition) !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--green-mid) !important; transform: translateY(-1px); }
+
+/* Mobile nav */
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--green-deep);
+  margin: 5px 0;
+  transition: var(--transition);
+}
+
+/* ─── Hero ──────────────────────────────────────── */
+.hero {
+  background: var(--green-deep);
+  position: relative;
+  overflow: hidden;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(92, 110, 74, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(74, 93, 58, 0.2) 0%, transparent 50%);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to top, var(--cream), transparent);
+}
+.hero .container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.hero-content { max-width: 560px; }
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  color: var(--tan-warm);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+  animation: fadeInUp 0.8s ease both;
+}
+.hero-label .dot {
+  width: 8px; height: 8px;
+  background: #7CB668;
+  border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+.hero h1 {
+  font-size: clamp(38px, 5vw, 58px);
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.8s ease 0.1s both;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--tan-warm);
+  font-weight: 500;
+}
+.hero-text {
+  font-size: 17px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.8;
+  margin-bottom: 36px;
+  max-width: 480px;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease 0.3s both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--tan-light);
+  color: var(--green-deep);
+  padding: 14px 32px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all var(--transition);
+}
+.btn-primary:hover { background: var(--white); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--white);
+  padding: 14px 32px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: all var(--transition);
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInUp 1s ease 0.3s both;
+}
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 380px;
+}
+.hero-card-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-card-icon svg { width: 36px; height: 36px; }
+.hero-card h3 {
+  color: var(--white);
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.hero-card p {
+  color: rgba(255,255,255,0.65);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hero-stat { text-align: center; flex: 1; }
+.hero-stat .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--tan-warm);
+}
+.hero-stat .label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* ─── Trust Strip ──────────────────────────────── */
+.trust-strip {
+  background: var(--cream);
+  padding: 48px 0;
+  border-bottom: 1px solid rgba(59, 74, 47, 0.06);
+}
+.trust-items {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+.trust-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--tan);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.trust-icon svg { width: 18px; height: 18px; color: var(--green-mid); }
+
+/* ─── About ────────────────────────────────────── */
+.about { background: var(--cream); }
+.about .container {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-visual { position: relative; }
+.about-img-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(145deg, var(--green-mid), var(--green-deep));
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.about-img-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1), transparent 60%);
+}
+.about-img-inner {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: calc(var(--radius-lg) - 4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+}
+.about-img-inner svg { width: 48px; height: 48px; margin-bottom: 16px; opacity: 0.5; }
+.about-accent {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 160px;
+  padding: 20px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.about-accent .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--green-deep);
+  line-height: 1;
+}
+.about-accent .label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+.about-subtitle {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--green-muted);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.about h2 { font-size: clamp(32px, 3.5vw, 44px); margin-bottom: 24px; }
+.about-text {
+  font-size: 16px;
+  color: var(--text-body);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+.about-quote {
+  background: var(--tan);
+  border-left: 3px solid var(--green-mid);
+  padding: 24px 28px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 32px 0;
+}
+.about-quote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--green-deep);
+  line-height: 1.6;
+}
+.about-details {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.about-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.about-detail-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--tan);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.about-detail-icon svg { width: 16px; height: 16px; color: var(--green-mid); }
+.about-detail strong { display: block; font-size: 14px; color: var(--green-deep); }
+.about-detail span { font-size: 13px; color: var(--text-muted); }
+
+/* ─── Approach ─────────────────────────────────── */
+.approach { background: var(--tan-light); }
+.approach-header { text-align: center; max-width: 640px; margin: 0 auto 60px; }
+.approach-subtitle {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--green-muted);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.approach h2 { font-size: clamp(32px, 3.5vw, 44px); margin-bottom: 16px; }
+.approach-desc { font-size: 16px; color: var(--text-muted); }
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.approach-card {
+  background: var(--white);
+  padding: 40px 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(59, 74, 47, 0.06);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.approach-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--green-mid);
+  transform: scaleX(0);
+  transition: transform var(--transition);
+}
+.approach-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.approach-card:hover::before { transform: scaleX(1); }
+.approach-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--tan);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.approach-icon svg { width: 24px; height: 24px; color: var(--green-deep); }
+.approach-card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.approach-card p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ─── Specialties ──────────────────────────────── */
+.specialties { background: var(--cream); }
+.specialties-header { text-align: center; max-width: 640px; margin: 0 auto 60px; }
+.specialties-subtitle {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--green-muted);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.specialties h2 { font-size: clamp(32px, 3.5vw, 44px); margin-bottom: 16px; }
+.specialties-desc { font-size: 16px; color: var(--text-muted); }
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.spec-card {
+  background: var(--white);
+  padding: 36px 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(59, 74, 47, 0.06);
+  transition: all var(--transition);
+  cursor: default;
+}
+.spec-card:hover { box-shadow: var(--shadow-soft); border-color: var(--green-muted); }
+.spec-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.spec-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.spec-more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 40px;
+}
+.spec-tag {
+  background: var(--tan);
+  color: var(--text-body);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ─── Pricing ──────────────────────────────────── */
+.pricing { background: var(--green-deep); position: relative; overflow: hidden; }
+.pricing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 30%, rgba(92,110,74,0.25), transparent 60%);
+}
+.pricing .container { position: relative; z-index: 2; }
+.pricing-header { text-align: center; max-width: 640px; margin: 0 auto 60px; }
+.pricing-subtitle {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--tan-dark);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.pricing h2 {
+  font-size: clamp(32px, 3.5vw, 44px);
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.pricing-desc { font-size: 16px; color: rgba(255,255,255,0.6); }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.price-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  text-align: center;
+  transition: all var(--transition);
+}
+.price-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+.price-card.featured {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+  transform: scale(1.03);
+}
+.price-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+.price-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--tan-dark);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.price-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.price-per {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 20px;
+}
+.price-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+.pricing-note {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+}
+.pricing-insurance {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* ─── CTA ──────────────────────────────────────── */
+.cta {
+  background: var(--tan-light);
+  text-align: center;
+}
+.cta h2 { font-size: clamp(32px, 3.5vw, 48px); margin-bottom: 20px; }
+.cta-text {
+  font-size: 17px;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+}
+.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-deep);
+  color: var(--white);
+  padding: 16px 36px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all var(--transition);
+}
+.btn-dark:hover { background: var(--green-mid); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--green-deep);
+  padding: 16px 36px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1.5px solid var(--green-deep);
+  transition: all var(--transition);
+}
+.btn-outline:hover { background: var(--green-deep); color: var(--white); }
+.cta-details {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+.cta-detail {
+  font-size: 14px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cta-detail svg { width: 16px; height: 16px; color: var(--green-mid); }
+
+/* ─── Footer ───────────────────────────────────── */
+.footer {
+  background: var(--green-deep);
+  color: rgba(255,255,255,0.6);
+  padding: 64px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand .name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.footer-brand .title {
+  font-size: 13px;
+  color: var(--tan-dark);
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+.footer-brand p { font-size: 14px; line-height: 1.7; max-width: 300px; }
+.footer h4 {
+  color: var(--white);
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color var(--transition);
+}
+.footer ul a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ─── Animations ───────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── Responsive: Tablet ───────────────────────── */
+@media (max-width: 1024px) {
+  .hero .container { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .about .container { grid-template-columns: 1fr; gap: 48px; }
+  .about-visual { max-width: 360px; margin: 0 auto; }
+  .approach-grid { grid-template-columns: repeat(2, 1fr); }
+  .spec-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .price-card.featured { transform: none; }
+  .price-card.featured:hover { transform: translateY(-4px); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── Responsive: Mobile ──────────────────────── */
+@media (max-width: 768px) {
+  /* Top bar */
+  .top-bar { font-size: 12px; padding: 10px 0; }
+  .top-bar .container { 
+    flex-direction: column; 
+    justify-content: center; 
+    text-align: center; 
+    gap: 6px; 
+  }
+  .top-bar .badge { font-size: 11px; }
+
+  /* Nav */
+  .nav .container { padding-top: 12px; padding-bottom: 12px; }
+  .nav-brand .name { font-size: 22px; }
+  .nav-brand .title { font-size: 10px; letter-spacing: 1px; }
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--cream);
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(59,74,47,0.1);
+    gap: 16px;
+    box-shadow: var(--shadow-md);
+    z-index: 200;
+  }
+  .nav-links.open a { font-size: 16px; padding: 4px 0; }
+  .nav-links.open .nav-cta { 
+    text-align: center; 
+    padding: 14px 24px; 
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* Hero */
+  .hero { min-height: auto; padding: 48px 0 72px; }
+  .hero .container { padding-top: 0; padding-bottom: 0; }
+  .hero-content { text-align: center; margin: 0 auto; }
+  .hero-label { font-size: 12px; margin-bottom: 20px; padding: 5px 14px; }
+  .hero h1 { font-size: 32px; margin-bottom: 18px; line-height: 1.2; }
+  .hero h1 br { display: none; }
+  .hero-text { 
+    font-size: 15px; 
+    margin: 0 auto 28px; 
+    line-height: 1.7; 
+    max-width: 100%;
+  }
+  .hero-btns { 
+    justify-content: center; 
+    flex-direction: column; 
+    align-items: stretch;
+    gap: 12px;
+  }
+  .btn-primary, .btn-secondary { 
+    justify-content: center; 
+    padding: 14px 24px; 
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Trust strip */
+  .trust-strip { padding: 32px 0; }
+  .trust-items { 
+    flex-direction: column; 
+    gap: 16px; 
+    align-items: flex-start;
+    padding: 0 8px;
+  }
+  .trust-item { font-size: 13px; }
+  .trust-icon { width: 36px; height: 36px; }
+  .trust-icon svg { width: 16px; height: 16px; }
+
+  /* Sections */
+  .section-pad { padding: 56px 0; }
+  .section-pad-sm { padding: 40px 0; }
+  .container { padding: 0 20px; }
+
+  /* About */
+  .about .container { gap: 36px; }
+  .about-visual { max-width: 280px; }
+  .about-img-placeholder { aspect-ratio: 1/1; }
+  .about-accent { 
+    position: relative; 
+    bottom: auto; 
+    right: auto; 
+    margin: -24px auto 0; 
+    width: 140px;
+  }
+  .about-subtitle { font-size: 12px; letter-spacing: 2px; }
+  .about h2 { font-size: 28px; margin-bottom: 18px; }
+  .about-text { font-size: 15px; line-height: 1.75; margin-bottom: 16px; }
+  .about-quote { padding: 18px 20px; margin: 24px 0; }
+  .about-quote p { font-size: 17px; }
+  .about-details { flex-direction: column; gap: 16px; margin-top: 20px; }
+
+  /* Approach */
+  .approach-header { margin-bottom: 36px; }
+  .approach-subtitle { font-size: 12px; }
+  .approach h2 { font-size: 28px; }
+  .approach-desc { font-size: 15px; }
+  .approach-grid { grid-template-columns: 1fr; gap: 16px; }
+  .approach-card { padding: 28px 24px; }
+  .approach-icon { width: 44px; height: 44px; margin-bottom: 18px; }
+  .approach-icon svg { width: 20px; height: 20px; }
+  .approach-card h3 { font-size: 20px; margin-bottom: 8px; }
+  .approach-card p { font-size: 14px; }
+
+  /* Specialties */
+  .specialties-header { margin-bottom: 36px; }
+  .specialties-subtitle { font-size: 12px; }
+  .specialties h2 { font-size: 28px; }
+  .specialties-desc { font-size: 15px; }
+  .spec-grid { grid-template-columns: 1fr; gap: 14px; }
+  .spec-card { padding: 28px 24px; }
+  .spec-card h3 { font-size: 20px; margin-bottom: 8px; }
+  .spec-card p { font-size: 14px; }
+  .spec-more { gap: 8px; margin-top: 28px; }
+  .spec-tag { font-size: 12px; padding: 6px 14px; }
+
+  /* Pricing */
+  .pricing-header { margin-bottom: 36px; }
+  .pricing-subtitle { font-size: 12px; }
+  .pricing h2 { font-size: 28px; }
+  .pricing-desc { font-size: 15px; }
+  .pricing-grid { 
+    grid-template-columns: 1fr; 
+    max-width: 100%; 
+    gap: 16px;
+  }
+  .price-card { padding: 28px 24px; }
+  .price-amount { font-size: 40px; }
+  .price-label { font-size: 12px; margin-bottom: 12px; }
+  .price-per { font-size: 13px; }
+  .price-desc { font-size: 13px; }
+  .pricing-insurance { 
+    font-size: 13px; 
+    margin-top: 20px; 
+    padding: 0 8px;
+    line-height: 1.6;
+  }
+  .pricing-note { font-size: 13px; margin-top: 16px; }
+
+  /* CTA */
+  .cta h2 { font-size: 28px; }
+  .cta-text { font-size: 15px; margin-bottom: 28px; }
+  .cta-btns { 
+    flex-direction: column; 
+    align-items: stretch;
+    gap: 12px;
+  }
+  .btn-dark, .btn-outline { 
+    justify-content: center; 
+    padding: 14px 24px;
+    width: 100%;
+    text-align: center;
+  }
+  .cta-details { 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 16px; 
+    margin-top: 36px;
+  }
+  .cta-detail { font-size: 13px; }
+
+  /* Footer */
+  .footer { padding: 48px 0 24px; }
+  .footer-grid { 
+    grid-template-columns: 1fr; 
+    gap: 28px; 
+    margin-bottom: 32px;
+  }
+  .footer-brand .name { font-size: 22px; }
+  .footer-brand p { max-width: 100%; }
+  .footer h4 { font-size: 15px; margin-bottom: 14px; }
+  .footer ul a { font-size: 14px; }
+  .footer-bottom { 
+    justify-content: center; 
+    text-align: center; 
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+  }
+}
+
+/* ─── Responsive: Small phones ─────────────────── */
+@media (max-width: 380px) {
+  .container { padding: 0 16px; }
+  .hero h1 { font-size: 28px; }
+  .hero-label { font-size: 11px; }
+  .hero-text { font-size: 14px; }
+  .about h2, .approach h2, .specialties h2, .pricing h2, .cta h2 { font-size: 26px; }
+  .nav-brand .name { font-size: 20px; }
+  .price-amount { font-size: 36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="container">
+    <span>Serving Meridian, Nampa, Boise & the Treasure Valley</span>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="badge">Accepting New Clients</span>
+      <a href="tel:+12086035255">(208) 603-5255</a>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="#" class="nav-brand">
+      <span class="name">Shawn Briggs</span>
+      <span class="title">Licensed Professional Counselor</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#specialties">Services</a></li>
+      <li><a href="#pricing">Fees</a></li>
+      <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-label">
+        <span class="dot"></span>
+        Now Scheduling Within 7 Days
+      </div>
+      <h1>Find Healing,<br><em>Rediscover Purpose</em></h1>
+      <p class="hero-text">Life can be complicated and painful — but you don't have to face it alone. I provide a safe space to explore, heal, and grow through compassionate, evidence-based counseling.</p>
+      <div class="hero-btns">
+        <a href="tel:+12086035255" class="btn-primary">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Free Consultation
+        </a>
+        <a href="#about" class="btn-secondary">
+          Learn More
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-icon">
+          <svg fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>A Safe Space to Heal</h3>
+        <p>Get to the root of what's holding you back and build a foundation for lasting growth and purpose.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="num">7</div>
+            <div class="label">Day Wait</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">Free</div>
+            <div class="label">Consult</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">12+</div>
+            <div class="label">Insurances</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Strip -->
+<div class="trust-strip">
+  <div class="container">
+    <div class="trust-items">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Licensed &amp; Verified (LPC)
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        In-Person &amp; Telehealth
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        New Clients Within 7 Days
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        Insurance Accepted
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- About -->
+<section class="about section-pad fade-in" id="about">
+  <div class="container">
+    <div class="about-visual">
+      <div class="about-img-placeholder">
+        <div class="about-img-inner">
+          <svg fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Professional headshot<br>goes here</span>
+        </div>
+      </div>
+      <div class="about-accent">
+        <div class="num">7</div>
+        <div class="label">Day Scheduling</div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="about-subtitle">About Shawn</div>
+      <h2>You Don't Have to Face It Alone</h2>
+      <p class="about-text">I help people through their healing and growth process by creating a space where they feel seen and heard — a place to feel and speak freely. Whether you're an individual or a couple, my goal is to get to the root of the matter and figure out how to rebuild.</p>
+      <p class="about-text">This requires looking inside ourselves to create self-awareness and make meaning of the suffering we've been through. Understanding life's meaning and one's purpose creates a foundation for lasting growth.</p>
+      <div class="about-quote">
+        <p>"My goal is to help you remove the roadblocks that are preventing you from healing and growth — through sincere connection and exploration of self."</p>
+      </div>
+      <div class="about-details">
+        <div class="about-detail">
+          <div class="about-detail-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <strong>Licensed Professional Counselor</strong>
+            <span>Idaho License #6871688</span>
+          </div>
+        </div>
+        <div class="about-detail">
+          <div class="about-detail-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <strong>Meridian, Idaho</strong>
+            <span>Treasure Valley Area</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Approach -->
+<section class="approach section-pad fade-in" id="approach">
+  <div class="container">
+    <div class="approach-header">
+      <div class="approach-subtitle">Therapeutic Approach</div>
+      <h2>How We'll Work Together</h2>
+      <p class="approach-desc">I draw from multiple evidence-based approaches, tailored to your unique needs and goals.</p>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-card">
+        <div class="approach-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Cognitive Behavioral (CBT)</h3>
+        <p>Identify and reshape thought patterns that contribute to emotional distress. Build practical tools for managing anxiety and depression.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Attachment-Based</h3>
+        <p>Explore how early relationships shape current patterns. Heal relational wounds and build healthier connections with others.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Existential Therapy</h3>
+        <p>Find deeper meaning and purpose in your experiences. Develop self-awareness and make sense of life's challenges.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Family Systems</h3>
+        <p>Understand your role within family dynamics. Improve communication and strengthen relationships across generations.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Acceptance &amp; Commitment</h3>
+        <p>Learn psychological flexibility. Accept difficult emotions while committing to actions aligned with your values.</p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Person-Centered</h3>
+        <p>You are the expert on your own life. I provide unconditional positive regard and a genuinely empathetic partnership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Specialties -->
+<section class="specialties section-pad fade-in" id="specialties">
+  <div class="container">
+    <div class="specialties-header">
+      <div class="specialties-subtitle">Areas of Focus</div>
+      <h2>How I Can Help</h2>
+      <p class="specialties-desc">Specialized support for a wide range of concerns, tailored to where you are in life.</p>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-card">
+        <h3>Grief &amp; Loss</h3>
+        <p>Navigate the pain of loss with someone who understands. Process grief at your own pace and find a path toward acceptance and meaning.</p>
+      </div>
+      <div class="spec-card">
+        <h3>Anxiety</h3>
+        <p>Learn to manage overwhelming worry and find calm. Develop practical coping strategies that work in your daily life.</p>
+      </div>
+      <div class="spec-card">
+        <h3>Marriage &amp; Premarital</h3>
+        <p>Strengthen your relationship, improve communication, and work through conflict together. Build a stronger partnership for the future.</p>
+      </div>
+      <div class="spec-card">
+        <h3>Trauma &amp; PTSD</h3>
+        <p>Heal from past experiences in a safe, supportive environment. Process difficult memories and reclaim your sense of safety.</p>
+      </div>
+      <div class="spec-card">
+        <h3>Depression</h3>
+        <p>Rediscover hope, motivation, and joy. Understand what's driving your depression and develop strategies for lasting change.</p>
+      </div>
+      <div class="spec-card">
+        <h3>Life Transitions</h3>
+        <p>Career changes, parenting challenges, identity questions — navigate major shifts with clarity and confidence.</p>
+      </div>
+    </div>
+    <div class="spec-more">
+      <span class="spec-tag">ADHD</span>
+      <span class="spec-tag">Men's Issues</span>
+      <span class="spec-tag">Self Esteem</span>
+      <span class="spec-tag">Stress</span>
+      <span class="spec-tag">Veterans</span>
+      <span class="spec-tag">First Responders</span>
+      <span class="spec-tag">Parenting</span>
+      <span class="spec-tag">Anger Management</span>
+      <span class="spec-tag">Sleep Issues</span>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing section-pad fade-in" id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="pricing-subtitle">Investment in Yourself</div>
+      <h2>Session Fees</h2>
+      <p class="pricing-desc">Quality mental healthcare is an investment in your future. Transparent pricing with insurance options available.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-label">Initial Consultation</div>
+        <div class="price-amount">Free</div>
+        <div class="price-per">15 minutes</div>
+        <div class="price-desc">A no-obligation phone call to discuss your needs and see if we're a good fit.</div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-label">Individual Session</div>
+        <div class="price-amount">$185</div>
+        <div class="price-per">per session</div>
+        <div class="price-desc">One-on-one therapy tailored to your personal goals and therapeutic needs.</div>
+      </div>
+      <div class="price-card">
+        <div class="price-label">Couples Session</div>
+        <div class="price-amount">$185</div>
+        <div class="price-per">per session</div>
+        <div class="price-desc">Work together to strengthen communication and build a healthier relationship.</div>
+      </div>
+    </div>
+    <div class="pricing-insurance">
+      <strong style="color:rgba(255,255,255,0.8);">Insurance Accepted:</strong> Aetna, Blue Cross Blue Shield, Regence, UnitedHealthcare, Optum, PacificSource, SelectHealth, Mountain Health CO-OP, Saint Luke's Health Plan, and more.
+    </div>
+    <p class="pricing-note">Visa, Mastercard, Discover, AmEx, HSA, Venmo, Zelle, Check, and Cash accepted.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta section-pad fade-in" id="contact">
+  <div class="container">
+    <h2>Take the First Step</h2>
+    <p class="cta-text">You don't have to navigate life's challenges alone. Reach out for a free 15-minute consultation — no obligation, just a conversation about your goals.</p>
+    <div class="cta-btns">
+      <a href="tel:+12086035255" class="btn-dark">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call (208) 603-5255
+      </a>
+      <a href="mailto:shawn@example.com" class="btn-outline">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+        Send Email
+      </a>
+    </div>
+    <div class="cta-details">
+      <div class="cta-detail">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        3006 E. Goldstone Dr, Meridian, ID 83642
+      </div>
+      <div class="cta-detail">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Telehealth Available
+      </div>
+      <div class="cta-detail">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        New Clients Within 7 Days
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Shawn Briggs, LPC</div>
+        <div class="title">Licensed Professional Counselor</div>
+        <p>Compassionate, evidence-based counseling for individuals and couples in Idaho's Treasure Valley. You don't have to face it alone.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#specialties">Grief & Loss</a></li>
+          <li><a href="#specialties">Anxiety</a></li>
+          <li><a href="#specialties">Couples Counseling</a></li>
+          <li><a href="#specialties">Trauma & PTSD</a></li>
+          <li><a href="#specialties">Depression</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Shawn</a></li>
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#pricing">Fees & Insurance</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+12086035255">(208) 603-5255</a></li>
+          <li><a href="#">3006 E. Goldstone Dr</a></li>
+          <li><a href="#">Meridian, ID 83642</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Shawn Briggs Counseling. All rights reserved.</span>
+      <span>Idaho LPC License #6871688</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky nav shadow
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Mobile toggle
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
